@@ -17,7 +17,7 @@ export const handler = async (event, context) => {
     // address in a toast message so the user will know it worked and where
     // to look for the email.
     handler: (user) => {
-      return user
+      return false //user
     },
 
     // How long the resetToken is valid for, in seconds (default is 24 hours)
