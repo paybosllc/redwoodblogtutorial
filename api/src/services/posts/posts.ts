@@ -1,4 +1,8 @@
-import type { QueryResolvers, MutationResolvers } from 'types/graphql'
+import type {
+  QueryResolvers,
+  MutationResolvers,
+  PostResolvers,
+} from 'types/graphql'
 
 import { db } from 'src/lib/db'
 
@@ -29,4 +33,9 @@ export const deletePost: MutationResolvers['deletePost'] = ({ id }) => {
   return db.post.delete({
     where: { id },
   })
+}
+
+export const Post: PostResolvers = {
+  comments: (_obj, { root }) =>
+    db.post.findUnique({ where: { id: root.id } }).comments(),
 }
